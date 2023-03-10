@@ -98,12 +98,12 @@
 
                 <li class="sidebar-title">Gestão de Díaria</li>
 
-                <li <?php if ($paginaAtiva == 'Solicitar-Diaria') { echo ' class="sidebar-item active"'; } ?> class="sidebar-item  ">
-                    <a href="planilha_diarias.php" class='sidebar-link'>
+                <!-- <li <?php if ($paginaAtiva == 'Solicitar-Diaria') { echo ' class="sidebar-item active"'; } ?> class="sidebar-item">
+                    <a href="solicitar_diaria.php" class='sidebar-link'>
                         <i class="bi bi-chat-square-text"></i>
                         <span>Solicitar Díarias</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li <?php if ($paginaAtiva == 'Cadastrar-Diaria') { echo ' class="sidebar-item active"'; } ?> class="sidebar-item  ">
                     <a href="cadastrar-diaria.php" class='sidebar-link'>
@@ -122,16 +122,16 @@
 
                 <li class="sidebar-title">Power Bi - Patio</li>
 
-                <li class="sidebar-item  ">
-                    <a href="form-layout.html" class='sidebar-link'>
+                <li <?php if ($paginaAtiva == 'Devolucao_Vazio') { echo ' class="sidebar-item active"'; } ?> class="sidebar-item  ">
+                    <a href="bi_devolucao.php" class='sidebar-link'>
                         <i class="bi bi-speedometer2"></i>
                         <span>Devolução de Vazio</span>
                     </a>
                 </li>
 
 
-                <li class="sidebar-item  ">
-                    <a href="table-datatable.html" class='sidebar-link'>
+                <li <?php if ($paginaAtiva == 'Controlador_Patio') { echo ' class="sidebar-item active"'; } ?> class="sidebar-item  ">
+                    <a href="bi_controlador.php" class='sidebar-link'>
                         <i class="bi bi-speedometer2"></i>
                         <span>Controlador Patio</span>
                     </a>
@@ -140,40 +140,18 @@
                 <li class="sidebar-title">Administradores</li>
 
                 <li class="sidebar-item  ">
-                    <a href="form-layout.html" class='sidebar-link'>
+                    <a href="controle_Usuarios.php" class='sidebar-link'>
                         <i class="bi bi-people"></i>
                         <span>Controle de Usuarios</span>
                     </a>
                 </li>
 
-                <li <?php if ($paginaAtiva == 'Aprovar-Diaria') { echo ' class="sidebar-item active"'; } ?> class="sidebar-item  ">
+                <!-- <li <?php if ($paginaAtiva == 'Aprovar-Diaria') { echo ' class="sidebar-item active"'; } ?> class="sidebar-item  ">
                     <a href="planilha_diarias.php" class='sidebar-link'>
                         <i class="bi bi-check2-all"></i>
                         <span>Aprovação de Diaria</span>
                     </a>
-                </li>
-
-                <li class="sidebar-title">Pages</li>
-
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-x-octagon-fill"></i>
-                        <span>Errors</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="error-403.html">403</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="error-404.html">404</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="error-500.html">500</a>
-                        </li>
-                    </ul>
-                </li>
-
+                </li> -->
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

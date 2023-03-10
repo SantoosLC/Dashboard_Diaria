@@ -18,6 +18,7 @@ if (mysqli_num_rows($resultado) == 1) {
   $_SESSION['usuario'] = $usuario;
   $_SESSION['nome'] = $dados['nome'];
   $_SESSION['cargo'] = $dados['Funcao'];
+  $_SESSION['usuario_logado'] = true;
 
   $_SESSION['login_success'] = "Entrando, aguarde...";
   header('Location: ../login.php');

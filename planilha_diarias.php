@@ -2,6 +2,13 @@
 session_start();
 include_once("assets/conexao.php");
 
+if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] == true) {
+    echo "";
+} else {
+    header("Location: assets/error-page/403.php");
+    exit();
+}
+
 $paginaAtiva = 'Planilha_Diaria';
 
 $diarias_sql = mysqli_query($conn, "SELECT diarias_solicitadas.*, web_login.nome FROM diarias_solicitadas INNER JOIN web_login ON diarias_solicitadas.registradoPor = web_login.login");
@@ -13,7 +20,8 @@ $diarias_sql = mysqli_query($conn, "SELECT diarias_solicitadas.*, web_login.nome
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataTable - Mazer Admin Dashboard</title>
+    <title>Multilog - Gestão de Patio</title>
+    <link rel="shortcut icon" href="assets/images/logo/logo_moderna.jpg" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -30,7 +38,6 @@ $diarias_sql = mysqli_query($conn, "SELECT diarias_solicitadas.*, web_login.nome
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 </head>
 
 <body>
@@ -236,6 +243,7 @@ $diarias_sql = mysqli_query($conn, "SELECT diarias_solicitadas.*, web_login.nome
 
     <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.5/js/buttons.colVis.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.5/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.5/js/buttons.print.min.js"></script>
@@ -324,6 +332,10 @@ $diarias_sql = mysqli_query($conn, "SELECT diarias_solicitadas.*, web_login.nome
                 search: { // define um valor padrão para a pesquisa
                 search: '03/2023'
                 },
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel'
+                ],
                 "language": {
                     "sEmptyTable": "Nenhum registro encontrado",
                     "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",

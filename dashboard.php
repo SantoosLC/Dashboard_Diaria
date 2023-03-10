@@ -2,10 +2,17 @@
 session_start();
 include_once("assets/conexao.php");
 
+if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] == true) {
+    echo "";
+} else {
+    header("Location: assets/error-page/403.php");
+    exit();
+}
+
 $paginaAtiva = 'Dashboard'; 
 
 $hoje = date('d/m/Y');
-$hoje = explode('/', $hoje);git init
+$hoje = explode('/', $hoje);
 $ano = $hoje[2];
 $mes = $hoje[1];
 $primeiroDia = '01';
@@ -49,6 +56,7 @@ $result_motora = mysqli_query($conn, $query_motora);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multilog - Gestão de Patio</title>
+    <link rel="shortcut icon" href="assets/images/logo/logo_moderna.jpg" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -59,7 +67,6 @@ $result_motora = mysqli_query($conn, $query_motora);
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 </head>
 
 <body>
@@ -236,11 +243,17 @@ $result_motora = mysqli_query($conn, $query_motora);
                                 <h4>Últimos Motoristas</h4>
                             </div>
                             <div class="card-content pb-4">
-                                
-                            <?php while ($row = mysqli_fetch_assoc($result_motora)) { 
+                            <?php 
+                            $limit = 3;
+                            $count = 0;
+                            while ($row = mysqli_fetch_assoc($result_motora)) { 
                                 $motorista = $row['motorista'];
                                 $horas_totais = $row['horas_totais'];
                                 $ultima_data = $row['ultima_data'];
+                                if ($count >= $limit) {
+                                    break;
+                                }
+                                $motorista_convertido = mb_convert_case($motorista, MB_CASE_TITLE, "UTF-8");
                             ?>
 
                             <div class="recent-message d-flex px-4 py-3">
@@ -248,12 +261,12 @@ $result_motora = mysqli_query($conn, $query_motora);
                                     <img src="assets/images/faces/4.jpg">
                                 </div>
                                 <div class="name ms-4">
-                                    <h5 class="mb-1"><?php echo $motorista; ?></h5>
+                                    <h5 class="mb-1"><?php echo $motorista_convertido; ?></h5>
                                     <h6 class="text-muted mb-0"><?php echo $horas_totais; ?> Horas</h6>
                                 </div>
                             </div>
 
-                            <?php }?>
+                            <?php $count++; }?>
                                 <div class="px-4">
                                 <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Visualizar</button>
                                 </div>
