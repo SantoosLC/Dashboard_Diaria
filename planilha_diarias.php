@@ -78,7 +78,7 @@ $diarias_sql = mysqli_query($conn, "SELECT diarias_solicitadas.*, web_login.nome
                                         <th>Placa</th>
                                         <th>Hora de Entrada</th>
                                         <th>Hora de Saída</th>
-                                        <th>Registrado Por</th>
+                                        <th>Ultima Edição</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -195,22 +195,22 @@ $diarias_sql = mysqli_query($conn, "SELECT diarias_solicitadas.*, web_login.nome
             </button>
             </div>
             <div class="modal-body">
-            <form method="POST" action="edicao_diaria-db.php" enctype="multipart/form-data">
+            <form method="POST" action="assets/edicao_diaria-db.php" enctype="multipart/form-data">
                 <div class="form-group">
                 <label for="recipient-motorista" class="control-label">Motorista:</label>
                 <input name="motorista" type="text" class="form-control" id="recipient-motorista">
                 </div>
                 <div class="form-group">
                 <label for="recipient-placa" class="control-label">Placa:</label>
-                <input name="placa" type="text" class="form-control" id="recipient-placa">
+                <input name="placa-cavalo" type="text" class="form-control" id="recipient-placa">
                 </div>
                 <div class="form-group" data-date-format="dd/mm/yyyy HH:ii">
                 <label for="recipient-inicio" class="control-label">Hora de Entrada:</label>
-                <input name="inicio" type="text" class="form-control" id="recipient-inicio">
+                <input name="hora-entrada" type="text" class="form-control" id="recipient-inicio">
                 </div>
                 <div class="form-group" data-date-format="dd/mm/yyyy HH:ii">
                 <label for="recipient-saida" class="control-label">Hora de Saída:</label>
-                <input name="saida" type="text" class="form-control" id="recipient-saida">
+                <input name="hora-saida" type="text" class="form-control" id="recipient-saida">
                 </div>
                 <div class="form-group">
                 <label for="recipient-motivo" class="control-label">Motivo:</label>
@@ -230,6 +230,9 @@ $diarias_sql = mysqli_query($conn, "SELECT diarias_solicitadas.*, web_login.nome
 
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
     <!-- Jquery CDN -->
 
@@ -279,9 +282,10 @@ $diarias_sql = mysqli_query($conn, "SELECT diarias_solicitadas.*, web_login.nome
         });
     </script>
 
-    <script type="text/javascript">
+    <script>
 		$('#exampleModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget)
+
+        var button = $(event.relatedTarget)
 		  var recipient = button.data('whatever')
 		  var recipientmotorista = button.data('whatevermotorista')
 		  var recipientplacaCavalo = button.data('whateverplaca')
